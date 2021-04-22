@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+    
+   <!-- permitindo o uso de @Component no pacote Spring1 !-->
+    <context:component-scan base-package="Spring1"/>
+
+    <!-- Carregando o arquivo de propriedades !-->
+    <context:property-placeholder location="classpath:petsProperties"/>
+
+    <!-- Criando os beans -->
+    <bean id = "rato"
+          class = "Spring1.Rato">
+    </bean>
+
+    <bean id = "cachorro"
+          class = "Spring1.Cachorro">
+        <property name="petshop" ref = "petshopParaCaes" />
+        <property name="nome" value="Koda"/>
+     </bean>
+
+    <bean id = "gato"
+          class="Spring1.Gato">
+        <constructor-arg ref = "petshopParaGatos"/>
+        <property name="nome" value="${variavel.nome}"/>
+    </bean>
+
+    <bean id = "petshopParaGatos"
+          class = "Spring1.PetshopParaGatos">
+
+    </bean>
+
+    <bean id = "petshopParaCaes"
+          class = "Spring1.PetshopParaCaes"/>
+    </beans>
+
+
+
+
+
